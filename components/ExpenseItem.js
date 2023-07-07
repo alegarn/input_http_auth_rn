@@ -1,13 +1,16 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { GlobalStyle } from '../constants/theme';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ExpenseItem({ title, amount, date }) {
-  function itemPressed(item) {
+  const navigation = useNavigation();
 
+  function itemPressed(item) {
+    navigation.navigate('ManageExpense', { id: item.id });
   }
 
   return (
-    <Pressable onPress={itemPressed} >
+    <Pressable onPress={itemPressed} style={({pressed}) => (pressed && styles.onPress)}>
       <View style={styles.largeCardContainer}>
         <View style={styles.cardInfos}>
           <Text style={[styles.cardBase, styles.largeCardTitle]}>{title}</Text>
@@ -24,6 +27,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  onPress: {
+    opacity: 0.75,
   },
   largeCardContainer: {
     flexDirection: 'row',
