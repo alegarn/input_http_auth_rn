@@ -2,8 +2,6 @@ import { View, StyleSheet, FlatList } from 'react-native';
 import ExpenseItem from './ExpenseItem';
 export default function ExpensesList({ expenses }) {
 
-
-
   const renderItem = ({ item }) => (
     <ExpenseItem {...item} />
   );
