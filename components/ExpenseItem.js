@@ -2,12 +2,12 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { GlobalStyle } from '../constants/theme';
 import { useNavigation } from '@react-navigation/native';
 
-export default function ExpenseItem({ title, amount, date }) {
+export default function ExpenseItem({ id, title, amount, date }) {
   const navigation = useNavigation();
 
-  function itemPressed(item) {
-    navigation.navigate('ManageExpense', { id: item.id });
-  }
+  function itemPressed() {
+    navigation.navigate('ManageExpense', { expenseId: id });
+  };
 
   return (
     <Pressable onPress={itemPressed} style={({pressed}) => (pressed && styles.onPress)}>
