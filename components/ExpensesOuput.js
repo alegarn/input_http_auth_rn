@@ -10,12 +10,13 @@ export default function ExpensesOuput({ expenses, expensesPeriod, fallbackText }
   let content = <Text style={styles.infoTextStyle}>{fallbackText}</Text>;
 
   if (expenses.length > 0) {
-    content = <ExpensesList expenses={expenses} />;
+    content = <ExpensesList expenses={expenses} periodName={expensesPeriod} />;
   }
+
   return (
     <View style={styles.container}>
       <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
-      <ExpensesList expenses={expenses} periodName={expensesPeriod} />
+      {content}
     </View>
   );
 };
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyle.primaryColor,
   },
   infoTextStyle: {
+    flex: 1,
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',

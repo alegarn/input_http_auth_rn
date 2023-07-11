@@ -7,7 +7,10 @@ export default function AllExpenses() {
   const expensesContext = useContext(ExpensesContext);
 
   return (
-    <ExpensesOuput expensesPeriod={' 7 days Expenses'} expenses={expensesContext.expenses} fallbackText={'No expenses found.'} />
+    <ExpensesOuput
+      expensesPeriod={' 7 days Expenses'}
+      expenses={expensesContext.expenses}
+      fallbackText={'No expenses found.'} />
   );
 };
 

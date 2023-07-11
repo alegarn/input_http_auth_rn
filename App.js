@@ -18,7 +18,8 @@ const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
   return(
-      <BottomTabs.Navigator screenOptions={({ navigation }) => ({
+      <BottomTabs.Navigator
+        screenOptions={({ navigation }) => ({
           headerStyle: { backgroundColor: GlobalStyle.primaryColor100 },
           headerTintColor: "white",
           tabBarStyle: { backgroundColor: GlobalStyle.primaryColor100 },
@@ -38,7 +39,7 @@ function ExpensesOverview() {
           component={AllExpenses}
           options={{
             title: "All Expenses",
-            tabBarLabel: "All",
+            tabBarLabel: "All Expenses",
             tabBarIcon: ({ color, size }) => (<Ionicons name="calendar" size={size} color={color} />)
           }}/>
       </BottomTabs.Navigator>
