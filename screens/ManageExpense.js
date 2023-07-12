@@ -9,12 +9,12 @@ import ExpenseForm from '../components/ManageExpense/ExpenseForm';
 export default function ManageExpense({ route, navigation }) {
 
   const expensesContext = useContext(ExpensesContext);
+
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
-  const selectedExpense = expensesContext.expenses.find((expense) => {
-    return expense.id === editedExpenseId;
-  })
+  const selectedExpense = expensesContext.expenses?.find((expense) => (expense.id === editedExpenseId));
+
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -28,25 +28,24 @@ export default function ManageExpense({ route, navigation }) {
     navigation.goBack();
   }
   const confirmHandler = (expenseData) => {
+    console.log('Confirm handler', expenseData);
     if (isEditing) {
-      expensesContext.updateExpense( editedExpenseId, expenseData);
+      expensesContext.updateExpense(editedExpenseId, expenseData);
       navigation.goBack();
     } else {
       expensesContext.addExpense(expenseData);
     }
+    navigation.goBack();
   }
   const handleDelete = () => {
     expensesContext.deleteExpense(editedExpenseId);
     navigation.goBack();
-    // Dummy delete functionality
-    console.log('Delete button clicked');
+
   };
 
   const handleEdit = () => {
     expensesContext.updateExpense(editedExpenseId);
     navigation.navigate("ManageExpense", { expenseId: editedExpenseId });
-    // Dummy edit functionality
-    console.log('Edit button clicked');
   };
 
   return (
