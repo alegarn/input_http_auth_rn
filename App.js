@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AllExpenses from './screens/AllExpenses';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
+
 import ExpensesContextProvider from './store/expenses-context';
 
 
@@ -18,12 +19,13 @@ const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
   return(
-      <BottomTabs.Navigator screenOptions={({ navigation }) => ({
+      <BottomTabs.Navigator
+        screenOptions={({ navigation }) => ({
           headerStyle: { backgroundColor: GlobalStyle.primaryColor100 },
           headerTintColor: "white",
           tabBarStyle: { backgroundColor: GlobalStyle.primaryColor100 },
           tabBarActiveTintColor: GlobalStyle.secondaryColor,
-          headerRight: ({tintColor}) => (<IconButton icon="add" color={tintColor} size={24} onPress={() => { navigation.navigate('ManageExpense' ) }} />)
+          headerRight: ({tintColor}) => (<IconButton icon="add" color={tintColor} size={24} onPress={() => { navigation.navigate('ManageExpense') }} />)
           })}>
         <BottomTabs.Screen
           name="RecentExpenses"
@@ -38,7 +40,7 @@ function ExpensesOverview() {
           component={AllExpenses}
           options={{
             title: "All Expenses",
-            tabBarLabel: "All",
+            tabBarLabel: "All Expenses",
             tabBarIcon: ({ color, size }) => (<Ionicons name="calendar" size={size} color={color} />)
           }}/>
       </BottomTabs.Navigator>
@@ -70,7 +72,6 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer>
       </ExpensesContextProvider>
-
     </>
   );
 }
